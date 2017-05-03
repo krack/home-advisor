@@ -9,14 +9,7 @@ $fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts";
 	margin: 10px;
 	position: relative;
 	border-radius: 5px;
-	h1{
-		font-family: BaroqueScriptRegular;
-		color: $secondary-color; 
-		text-shadow: 1px 1px #000, -1px 1px #000, -1px -1px #000, 1px -1px #000;
-		margin:0px;
-	}
-	&.accepted{
-	}
+	
 	.delete, .update, button.accept{
 
 		display: block;
@@ -42,39 +35,9 @@ $fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts";
 	    @extend .fa-pencil;
 		right: 32px;
 	}
-	button.accept{
-		@extend .fa;
-	    @extend .fa-check-circle;	    
-		right: 62px;		
-	}
-	span.accept{
-		transform: rotate(-20deg);
-		padding-top:40px;
-		font-size: 8em;
+	
+	span{
 		display: block;
-		position: absolute;
-		top:0;
-		left:0;
-		right:0;
-		bottom:0;
-		opacity: 0.2;
-    	text-align: center;
 	}
-
-	
-	
-	p{
-		width: 75%;
-		display: inline-block;
-		vertical-align: top;
-	}
-	.participants{
-		float: right;
-		.winner, .looser{
-			display: block;
-		}
-	}
-	
-
 	
 }
