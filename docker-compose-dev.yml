@@ -20,8 +20,8 @@ services:
     - SERVER_HOST=http://localhost
     - SERVER_PORT=8080
     - SERVER_PUBLIC_PORT=8080
-    - FACEBOOK_API_KEY=1903823789875218
-    - FACEBOOK_API_SECRET=483e6e57c04bfeb2ad279b859023528b
+    - FACEBOOK_API_KEY=*
+    - FACEBOOK_API_SECRET=*
     ports: 
     - "8080:8080"
     restart: never
