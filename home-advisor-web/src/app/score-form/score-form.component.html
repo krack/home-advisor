@@ -1,0 +1,25 @@
+<div class="container">
+	<h1 *ngIf="!element._id">Add a rating</h1>
+	<h1 *ngIf="element._id">Update a rating</h1>
+
+	<div class="body">
+		<form (ngSubmit)="saveElement()">
+			<input type="hidden" class="form-control" [(ngModel)]="element._id" id="_id" name="_id">
+
+			<div class="form-group">
+				<label for="adress">adress</label>
+				<input type="text" class="form-control" [(ngModel)]="element.adress" id="adress" name="adress" required />
+			</div>
+
+			<div class="form-group">
+				<label for="rate ">rating</label>
+				<input type="text" class="form-control" [(ngModel)]="element.rate" id="rate" name="rate" required />
+			</div>
+
+			<input type="hidden" class="form-control" [(ngModel)]="element.rater"  id="rater" name="rater">
+
+			<button type="submit">Save</button>
+		</form>
+
+	</div>
+</div>

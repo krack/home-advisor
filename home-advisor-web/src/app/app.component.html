@@ -1,0 +1,7 @@
+<h1 i18n>Rating list</h1>
+<nav>
+	<a routerLink="/scores" routerLinkActive="active" class="list" >list</a>
+    <a routerLink="/score" routerLinkActive="active" class="add">add</a>
+    <a *ngIf="connected._id" class="login">{{connected.displayName}} </a>
+</nav>
+<router-outlet></router-outlet>

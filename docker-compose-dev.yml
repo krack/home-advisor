@@ -1,0 +1,38 @@
+version: '2'
+services:
+  #database : mongo db
+  mongo:
+    image: mongo:latest
+    volumes:
+    - /opt/mongodb/db-home-advisor:/data/db
+    restart: never
+  #rest api engie : node + code
+  api:
+    depends_on:
+    - mongo
+    image: node:alpine
+    volumes:
+    - ./home-advisor-api/:/usr/src/app
+    links:
+    - mongo
+    environment:
+    - ALLOW_URL=http://localhost:4200
+    - SERVER_HOST=http://localhost
+    - SERVER_PORT=8080
+    - SERVER_PUBLIC_PORT=8080
+    - FACEBOOK_API_KEY=1903823789875218
+    - FACEBOOK_API_SECRET=483e6e57c04bfeb2ad279b859023528b
+    ports: 
+    - "8080:8080"
+    restart: never
+    working_dir: /usr/src/app
+    command: sh -c 'npm install; npm start'
+  web:
+    image: node:alpine
+    ports:
+    - 4200:4200
+    restart: never
+    working_dir: /usr/src/app
+    volumes:
+    - "./home-advisor-web/:/usr/src/app"
+    command: sh -c 'npm install; npm start'
