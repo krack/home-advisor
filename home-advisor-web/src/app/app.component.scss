@@ -36,7 +36,6 @@ nav{
 	.list{
     	@extend .fa;
     	@extend .fa-list;
-    	margin-left:40px;
 		font-size: 0px;
 		color: #cccccc;
 		&:before{
@@ -45,6 +44,17 @@ nav{
 		}
 		&.active{
 			color: #777777;
+		}
+	}
+	.search{
+    	@extend .fa;
+    	@extend .fa-search;
+    	margin-left:40px;
+		font-size: 0px;
+		color: #cccccc;
+		&:before{
+			font-size: 30px;
+			color: $primary-color;
 		}
 	}
 	.login{

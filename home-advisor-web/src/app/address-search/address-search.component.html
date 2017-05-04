@@ -1,9 +1,8 @@
 <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
 
 <div *ngIf="result?.length===0">aucun résultat</div>
+<button *ngIf="searchRun" [routerLink]="['/score', adressSearch]">Note this address</button>
 
 <div class="address" *ngFor="let score of scores">
-
 	<address-view [address]="score.address"></address-view>
-
 </div>

@@ -18,8 +18,9 @@ import {Address} from '../model/address';
   providers: [SearchService]
 })
 export class AddressSearchComponent extends ErrorComponent implements OnInit {
-
+  private adressSearch:Address = new Address();
   public scores: SearchResult[] = [];
+  public searchRun:boolean = false;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -48,15 +49,17 @@ export class AddressSearchComponent extends ErrorComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          console.log(place.address_components);
-          let adressSearch:Address = new Address();
-          adressSearch.street_number = Number(this.searchAdressComponent(place.address_components, "street_number").long_name);
-          adressSearch.route = this.searchAdressComponent(place.address_components, "route").long_name;
-          adressSearch.locality = this.searchAdressComponent(place.address_components, "locality").long_name;
-          adressSearch.postal_code = this.searchAdressComponent(place.address_components, "postal_code").long_name;
-          adressSearch.country = this.searchAdressComponent(place.address_components, "country").long_name;
-          this.searchService.search(adressSearch).subscribe(
-            result => this.scores = result,
+       
+          this.adressSearch.street_number = Number(this.searchAdressComponent(place.address_components, "street_number").long_name);
+          this.adressSearch.route = this.searchAdressComponent(place.address_components, "route").long_name;
+          this.adressSearch.locality = this.searchAdressComponent(place.address_components, "locality").long_name;
+          this.adressSearch.postal_code = this.searchAdressComponent(place.address_components, "postal_code").long_name;
+          this.adressSearch.country = this.searchAdressComponent(place.address_components, "country").long_name;
+          this.searchService.search(this.adressSearch).subscribe(
+            result => {
+              this.scores = result;
+              this.searchRun = true;
+            },
             error =>  this.manageError(error)
           );
         });
