@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AgmCoreModule } from "angular2-google-maps/core";
 
 
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
@@ -18,6 +19,7 @@ import { FilesUploaderComponent } from 'angularjs-nodejs-framework/angularjs-nod
 import {environment} from '../environments/environment';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { AddressViewComponent } from './address-view/address-view.component';
+import { AddressSearchComponent } from './address-search/address-search.component';
 
 
 const appRoutes: Routes = [
@@ -28,12 +30,16 @@ const appRoutes: Routes = [
     component: ScoresListComponent
   },
   {
+    path: 'search',
+    component: AddressSearchComponent
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data: { baseUrl: environment.apiUrl.replace("/api/", "/") }
   },
   { path: '',
-    redirectTo: '/scores',
+    redirectTo: '/search',
     pathMatch: 'full'
   }
 ];
@@ -48,13 +54,18 @@ const appRoutes: Routes = [
     LoginComponent,
     FilesUploaderComponent,
     AddressFormComponent,
-    AddressViewComponent
+    AddressViewComponent,
+    AddressSearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-     RouterModule.forRoot(appRoutes)
+     RouterModule.forRoot(appRoutes),
+     AgmCoreModule.forRoot({
+      apiKey: "AIzaSyD0KAzKd0V5GYS7dMdf8aQq7xsIQp-LTZM",
+      libraries: ["places"]
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

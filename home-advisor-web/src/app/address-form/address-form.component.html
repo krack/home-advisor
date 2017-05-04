@@ -6,24 +6,19 @@
 </div>
 
 <div class="form-group">
-	<label for="street">street</label>
-	<input type="text" class="form-control" [(ngModel)]="address.street" id="street" name="street" placeholder="Adresse postale, boîte postale" required />
+	<label for="street_number">street number</label>
+	<input type="number" class="form-control" [(ngModel)]="address.street_number" id="street_number" name="street_number" placeholder="14" />
+	<label for="route">street name</label>
+	<input type="text" class="form-control" [(ngModel)]="address.route" id="route" name="route" placeholder="Adresse postale, boîte postale" required />
 	<input type="text" class="form-control" [(ngModel)]="address.streetComplement" id="streetComplement" placeholder="Appartement, suite, bloc, bâtiment, etc." name="streetComplement" />
 </div>
 
 <div class="form-group">
-	<label for="city">city</label>
-	<input type="text" class="form-control" [(ngModel)]="address.city" id="city" name="city" required />
+	<label for="locality">locality</label>
+	<input type="text" class="form-control" [(ngModel)]="address.locality" id="locality" name="locality" required />
 </div>
 
 <div class="form-group">
-	<label for="postalCode">postalCode</label>
-	<input type="text" class="form-control" [(ngModel)]="address.postalCode" id="postalCode" name="postalCode" required />
+	<label for="postal_code">postal code</label>
+	<input type="text" class="form-control" [(ngModel)]="address.postal_code" id="postal_code" name="postal_code" required />
 </div>
-
-<div class="form-group">
-	<label for="state">État/Province/Région</label>
-	<input type="text" class="form-control" [(ngModel)]="address.state" id="state" name="state" />
-</div>
-
-

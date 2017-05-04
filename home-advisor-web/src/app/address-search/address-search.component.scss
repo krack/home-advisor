@@ -1,0 +1,12 @@
+
+@import '../themes';
+input{
+	width: 100%;
+}
+.address{
+	background-color: $primary-color;
+	padding: 10px;
+	margin: 10px;
+	position: relative;
+	border-radius: 5px;
+}

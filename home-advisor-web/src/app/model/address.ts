@@ -3,6 +3,6 @@ import { IdentifiedElement } from 'angularjs-nodejs-framework/angularjs-nodejs-f
 
 export class Address{
 
-	constructor(public country?:string, public street?:string, public streetComplement?:string, public city?:string, public postalCode?:string, public state?:string){
+	constructor(public country?:string, public street_number?:Number, public route?:string, public streetComplement?:string, public locality?:string, public postal_code?:string){
 	}
 }

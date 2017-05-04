@@ -123,7 +123,11 @@ var serviceScore = null;
 					"type": "String"
 				},
 				{
-					"name": "street",
+					"name": "street_number",
+					"type": "String"
+				},
+				{
+					"name": "route",
 					"type": "String"
 				},
 				{
@@ -131,15 +135,11 @@ var serviceScore = null;
 					"type": "String"
 				},
 				{
-					"name": "city",
+					"name": "locality",
 					"type": "String"
 				},
 				{
-					"name": "postalCode",
-					"type": "String"
-				},
-				{
-					"name": "state",
+					"name": "postal_code",
 					"type": "String"
 				}
 			]
@@ -159,6 +159,35 @@ var serviceScore = null;
 }
 
 
+
+//POST /:id/name/
+app.post('/api/search/', function(req, res) {
+	console.log('POST /api/search/');
+	
+	var criteria ={
+		"address.street_number" : req.body.street_number,
+		"address.route" : req.body.route,
+		"address.locality" : req.body.locality,
+		"address.country" : req.body.country,
+		"address.postal_code" : req.body.postal_code
+	};
+
+	serviceScore.find(criteria).then(function(list){
+			var result = [];
+			for(var i = 0; i < list.length; i++){
+				var element = list[i];
+				result.push({
+					"address": list[i].address,
+					"scoreId": list[i]._id
+				}); 
+			}
+			res.json(result);
+		}, 
+		function(error){
+			res.sendStatus(error);
+		}
+	);
+});
 
 app.listen(port);
 console.log("App listening on port " + port);
