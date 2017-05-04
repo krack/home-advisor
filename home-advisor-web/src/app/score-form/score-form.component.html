@@ -6,10 +6,7 @@
 		<form (ngSubmit)="saveElement()">
 			<input type="hidden" class="form-control" [(ngModel)]="element._id" id="_id" name="_id">
 
-			<div class="form-group">
-				<label for="adress">adress</label>
-				<input type="text" class="form-control" [(ngModel)]="element.adress" id="adress" name="adress" required />
-			</div>
+			<address-form [address]="element.address"></address-form>
 
 			<div class="form-group">
 				<label for="rate ">rating</label>

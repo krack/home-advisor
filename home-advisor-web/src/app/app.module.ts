@@ -16,6 +16,8 @@ import { FilesUploaderComponent } from 'angularjs-nodejs-framework/angularjs-nod
 
 
 import {environment} from '../environments/environment';
+import { AddressFormComponent } from './address-form/address-form.component';
+import { AddressViewComponent } from './address-view/address-view.component';
 
 
 const appRoutes: Routes = [
@@ -44,7 +46,9 @@ const appRoutes: Routes = [
     FileSelectDirective,
     ScoreListElementComponent,
     LoginComponent,
-    FilesUploaderComponent
+    FilesUploaderComponent,
+    AddressFormComponent,
+    AddressViewComponent
   ],
   imports: [
     BrowserModule,

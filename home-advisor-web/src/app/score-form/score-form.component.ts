@@ -33,7 +33,7 @@ export class ScoreFormComponent extends ElementComponent<Score> implements OnIni
 
 	ngOnInit() {
 		this.initElementFromUrlParameter();
-
+		this.element.address.address = "toto";
 		this.usersService.getConnectedUser().subscribe(	(user: User) => this.element.rater = user._id);
 	}
 }

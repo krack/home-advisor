@@ -115,8 +115,34 @@ var serviceScore = null;
 	}
 	var model = [
 		{
-			"name": "adress",
-			"type": "String"
+			"name": "address",
+			"type": "Object",
+			"shema": [
+				{
+					"name": "country",
+					"type": "String"
+				},
+				{
+					"name": "street",
+					"type": "String"
+				},
+				{
+					"name": "streetComplement",
+					"type": "String"
+				},
+				{
+					"name": "city",
+					"type": "String"
+				},
+				{
+					"name": "postalCode",
+					"type": "String"
+				},
+				{
+					"name": "state",
+					"type": "String"
+				}
+			]
 		},
 		{
 
