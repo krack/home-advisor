@@ -8,6 +8,7 @@ import { ErrorComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-fram
 
 import {SearchService } from '../search.service';
 import {SearchResult} from '../model/searchResult';
+import {SearchElement} from '../model/searchElement';
 import {Address} from '../model/address';
 
 
@@ -19,7 +20,7 @@ import {Address} from '../model/address';
 })
 export class AddressSearchComponent extends ErrorComponent implements OnInit {
   private adressSearch:Address = new Address();
-  public scores: SearchResult[] = [];
+  public searchResult: SearchResult;
   public searchRun:boolean = false;
 
   @ViewChild("search")
@@ -31,7 +32,8 @@ export class AddressSearchComponent extends ErrorComponent implements OnInit {
     private searchService:SearchService,
     router:Router
   ) {
-    super(router)
+    super(router);
+    this.searchResult = new SearchResult();
   }
 
   ngOnInit() {
@@ -57,7 +59,7 @@ export class AddressSearchComponent extends ErrorComponent implements OnInit {
           this.adressSearch.country = this.searchAdressComponent(place.address_components, "country").long_name;
           this.searchService.search(this.adressSearch).subscribe(
             result => {
-              this.scores = result;
+              this.searchResult = result;
               this.searchRun = true;
             },
             error =>  this.manageError(error)

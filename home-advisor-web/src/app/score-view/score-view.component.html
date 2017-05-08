@@ -1,0 +1,23 @@
+<div>
+	<address-view [address]="element.address"></address-view>
+	<span>rate : {{element.rate}}</span>
+	<span>rater : {{connectedUser.displayName}}</span>
+</div>
+<fieldset>
+<legend>same address</legend>
+	<div class="address"  *ngFor="let score of searchResult.match" >
+		<div *ngIf="element._id !==score.scoreId">
+			<address-view [address]="score.address"></address-view>	
+			<button [routerLink]="['/score-detail', score.scoreId]">view</button>
+		</div>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>same street</legend>
+	<div class="address" *ngFor="let score of searchResult.route">
+		<address-view [address]="score.address"></address-view>	
+
+
+		<button [routerLink]="['/score-detail', score.scoreId]">view</button>
+	</div>
+</fieldset>

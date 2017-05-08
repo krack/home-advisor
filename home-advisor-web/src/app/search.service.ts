@@ -32,7 +32,7 @@ export class SearchService {
     return Observable.throw(error.status);
   }
 
-  search(adress:Address): Observable<SearchResult[]>{
+  search(adress:Address): Observable<SearchResult>{
   	
 	     return this.http.post(this.url, adress, this.options)
                     .map(this.extractData)

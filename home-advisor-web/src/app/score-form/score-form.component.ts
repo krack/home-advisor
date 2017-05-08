@@ -26,7 +26,7 @@ import {environment} from '../../environments/environment';
 })
 export class ScoreFormComponent extends ElementComponent<Score> implements OnInit {
 	private usersService:UserService;
-	private edit:boolean;
+	private connectedUser:User;
 
 
 	constructor( router: Router, route: ActivatedRoute, scoresService: ScoresService, usersService: UserService) {
@@ -37,7 +37,10 @@ export class ScoreFormComponent extends ElementComponent<Score> implements OnIni
 
 	ngOnInit() {
 		this.initElementFromUrlParameter();
-		this.usersService.getConnectedUser().subscribe(	(user: User) => this.element.rater = user._id);
+		this.usersService.getConnectedUser().subscribe(	(user: User) => {
+			this.connectedUser = user;
+			this.element.rater = user._id;
+		});
 
 		//field element with entry parameters
 		this.route.params
@@ -48,9 +51,6 @@ export class ScoreFormComponent extends ElementComponent<Score> implements OnIni
 	    		this.element.address.locality = params['locality'];
 	    		this.element.address.postal_code = params['postal_code'];
 	    		this.element.address.country = params['country'];
-	    		this.edit = true;
-	    	}else{
-	    		this.edit = (params['edit'] === "true");
 	    	}
     	});
 	}

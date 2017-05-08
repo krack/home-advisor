@@ -164,7 +164,7 @@ var serviceScore = null;
 app.post('/api/search/', function(req, res) {
 	console.log('POST /api/search/');
 	
-	var criteria ={
+	var criteriaAddress ={
 		"address.street_number" : req.body.street_number,
 		"address.route" : req.body.route,
 		"address.locality" : req.body.locality,
@@ -172,16 +172,39 @@ app.post('/api/search/', function(req, res) {
 		"address.postal_code" : req.body.postal_code
 	};
 
-	serviceScore.find(criteria).then(function(list){
-			var result = [];
-			for(var i = 0; i < list.length; i++){
-				var element = list[i];
-				result.push({
-					"address": list[i].address,
-					"scoreId": list[i]._id
-				}); 
-			}
-			res.json(result);
+	var criteriaRoute ={
+		"address.street_number" : { $ne: req.body.street_number},
+		"address.route" : req.body.route,
+		"address.locality" : req.body.locality,
+		"address.country" : req.body.country,
+		"address.postal_code" : req.body.postal_code
+	};
+
+	var result = {
+		"match": [],
+		"route": []
+	};
+	function addElements(table, list){
+		for(var i = 0; i < list.length; i++){
+			var element = list[i];
+			table.push({
+				"address": list[i].address,
+				"scoreId": list[i]._id
+			}); 
+		}
+	}
+
+	serviceScore.find(criteriaAddress).then(function(list){
+			addElements(result.match, list);
+			serviceScore.find(criteriaRoute).then(function(list){
+					addElements(result.route, list);
+					
+					res.json(result);
+				}, 
+				function(error){
+					res.sendStatus(error);
+				}
+			);
 		}, 
 		function(error){
 			res.sendStatus(error);

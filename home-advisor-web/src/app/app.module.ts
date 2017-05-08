@@ -11,6 +11,7 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { ScoresListComponent } from './scores-list/scores-list.component';
 import { ScoreFormComponent } from './score-form/score-form.component';
+import { ScoreViewComponent } from './score-view/score-view.component';
 import { ScoreListElementComponent } from './scores-list-element/scores-list-element.component';
 import { LoginComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
 import { FilesUploaderComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
@@ -24,6 +25,7 @@ import { AddressSearchComponent } from './address-search/address-search.componen
 
 const appRoutes: Routes = [
   { path: 'score',      component: ScoreFormComponent },
+  { path: 'score-detail/:id',      component: ScoreViewComponent }, 
   { path: 'score/:id',      component: ScoreFormComponent },
   {
     path: 'scores',
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     FilesUploaderComponent,
     AddressFormComponent,
     AddressViewComponent,
-    AddressSearchComponent
+    AddressSearchComponent,
+    ScoreViewComponent
   ],
   imports: [
     BrowserModule,
