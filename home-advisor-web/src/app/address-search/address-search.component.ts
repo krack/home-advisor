@@ -66,7 +66,9 @@ export class AddressSearchComponent extends ErrorComponent implements OnInit {
           );
         });
       });
+
     });
+    this.geolocate();
   }
 
   private searchAdressComponent(addressComponents:google.maps.GeocoderAddressComponent[], type:string):google.maps.GeocoderAddressComponent {
@@ -78,4 +80,25 @@ export class AddressSearchComponent extends ErrorComponent implements OnInit {
     }
     return null;
   }
+
+
+  private geolocate():void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position)=> {
+
+        var geocoder = new google.maps.Geocoder();
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        geocoder.geocode({'location': geolocation}, (results, status)=> {
+            if (results[0]) {
+              this.searchElementRef.nativeElement.value =results[0].formatted_address;
+            }
+        });
+
+      });
+    }
+  };
+
 }
