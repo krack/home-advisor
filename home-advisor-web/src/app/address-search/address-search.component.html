@@ -4,5 +4,8 @@
 <button *ngIf="searchRun" [routerLink]="['/score', adressSearch]">Note this address</button>
 
 <div class="address" *ngFor="let score of scores">
-	<address-view [address]="score.address"></address-view>
+	<address-view [address]="score.address"></address-view>	
+
+
+	<button [routerLink]="['/score', score.scoreId, { edit:false }]">view</button>
 </div>

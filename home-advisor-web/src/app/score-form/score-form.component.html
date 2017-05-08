@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="edit">
 	<h1 *ngIf="!element._id">Add a rating</h1>
 	<h1 *ngIf="element._id">Update a rating</h1>
 
@@ -19,4 +19,10 @@
 		</form>
 
 	</div>
+</div>
+
+<div *ngIf="!edit">
+	<address-view [address]="element.address"></address-view>
+	<span>rate : {{element.rate}}</span>
+	<span>rater : {{element.rater}}</span>
 </div>

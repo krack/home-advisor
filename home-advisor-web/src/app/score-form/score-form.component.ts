@@ -26,6 +26,7 @@ import {environment} from '../../environments/environment';
 })
 export class ScoreFormComponent extends ElementComponent<Score> implements OnInit {
 	private usersService:UserService;
+	private edit:boolean;
 
 
 	constructor( router: Router, route: ActivatedRoute, scoresService: ScoresService, usersService: UserService) {
@@ -47,6 +48,9 @@ export class ScoreFormComponent extends ElementComponent<Score> implements OnIni
 	    		this.element.address.locality = params['locality'];
 	    		this.element.address.postal_code = params['postal_code'];
 	    		this.element.address.country = params['country'];
+	    		this.edit = true;
+	    	}else{
+	    		this.edit = (params['edit'] === "true");
 	    	}
     	});
 	}
