@@ -13,6 +13,7 @@ services:
     image: rancher/lb-service-haproxy:v0.6.4
     labels:
       proxy_url: ${EXPOSE_API_URL}
+      io.rancher.scheduler.affinity:host_label: master=1
   api:
     image: krack/home-advisor-api:${TAG}
     links:
@@ -34,6 +35,7 @@ services:
     image: rancher/lb-service-haproxy:v0.6.4
     labels:
       proxy_url: ${EXPOSE_SITE_URL}
+      io.rancher.scheduler.affinity:host_label: master=1
   web:
     image: httpd:2.4
     image: krack/home-advisor-web:${TAG}
