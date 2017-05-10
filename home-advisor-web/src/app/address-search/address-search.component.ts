@@ -1,7 +1,7 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from 'angular2-google-maps/core';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 
 import { ErrorComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
