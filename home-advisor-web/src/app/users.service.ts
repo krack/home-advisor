@@ -12,7 +12,7 @@ import { User } from './model/user';
 
 @Injectable()
 export class UserService {
-  private connectedUser: BehaviorSubject<User> = new BehaviorSubject(new User());
+  private connectedUser: Observable<User>;
 
   private url = environment.apiUrl+'users/';  // URL to web API
   private options:RequestOptions;
@@ -51,14 +51,21 @@ export class UserService {
                     .catch(this.handleError);
   }
   getConnectedUser(): Observable<User>{
-  	
-	 this.http.get(environment.apiUrl+'me', this.options)
-                .map(this.extractData).subscribe(
-     	 result => {
-     	 	this.connectedUser.next(result)
-     	 }
-      );
+  	if(!this.connectedUser){
+    this.connectedUser= new Observable(observer => {
 
-    return this.connectedUser.asObservable();
+          observer.next(null)
+        this.http.get(environment.apiUrl+'me', this.options)
+                .map(this.extractData).subscribe(
+        result => {
+          observer.next(result)
+        },
+        error=>observer.error(error.status)
+      );
+    });
+  }
+
+
+    return this.connectedUser;
   }
 }

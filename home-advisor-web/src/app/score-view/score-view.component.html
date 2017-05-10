@@ -1,10 +1,11 @@
 <div>
 	<address-view [address]="element.address"></address-view>
 	<span>rate : {{element.rate}}</span>
-	<span>rater : {{connectedUser.displayName}}</span>
+	<span>rater : {{connectedUser?.displayName}}</span>
 </div>
+
 <fieldset>
-<legend>same address</legend>
+	<legend>same address</legend>
 	<div class="address"  *ngFor="let score of searchResult.match" >
 		<div *ngIf="element._id !==score.scoreId">
 			<address-view [address]="score.address"></address-view>	

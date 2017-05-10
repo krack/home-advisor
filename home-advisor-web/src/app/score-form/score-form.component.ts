@@ -36,11 +36,15 @@ export class ScoreFormComponent extends ElementComponent<Score> implements OnIni
 	}
 
 	ngOnInit() {
-		this.initElementFromUrlParameter();
-		this.usersService.getConnectedUser().subscribe(	(user: User) => {
-			this.connectedUser = user;
-			this.element.rater = user._id;
+		this.initElementFromUrlParameter().subscribe(() => {
 		});
+		this.usersService.getConnectedUser().subscribe(	(user: User) => {
+			if(user){
+				this.connectedUser = user;
+				this.element.rater = this.connectedUser._id;
+			}
+		}, 
+		(error)=>this.manageError(error));
 
 		//field element with entry parameters
 		this.route.params

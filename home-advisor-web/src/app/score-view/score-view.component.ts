@@ -42,6 +42,10 @@ export class ScoreViewComponent extends ElementComponent<Score> implements OnIni
 	ngOnInit() {
 		this.initElementFromUrlParameter().subscribe(
 			nothing=>{
+				this.usersService.getById(this.element.rater).subscribe(	(user: User) => {
+					this.connectedUser = user;
+				});
+				
 				this.searchService.search(this.element.address).subscribe(
 		            result => {
 		              this.searchResult = result;
@@ -52,9 +56,7 @@ export class ScoreViewComponent extends ElementComponent<Score> implements OnIni
 		    error =>  this.manageError(error)
 
 		);
-		this.usersService.getConnectedUser().subscribe(	(user: User) => {
-			this.connectedUser = user;
-		});
+
 	};
 
 		 
