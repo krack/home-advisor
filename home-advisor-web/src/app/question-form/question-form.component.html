@@ -1,0 +1,25 @@
+<div >
+	<h1 *ngIf="!element._id">Add a question</h1>
+	<h1 *ngIf="element._id">Update a question</h1>
+
+	<div class="body">
+		<form (ngSubmit)="saveElement()">
+			<input type="hidden" class="form-control" [(ngModel)]="element._id" id="_id" name="_id">
+
+			<div class="form-group">
+				<label for="label ">label</label>
+				<input type="text" class="form-control" [(ngModel)]="element.label" id="label" name="label" required />
+			</div>
+
+			<div class="form-group">
+				<label for="type ">type</label>				
+				<select id="type" name="type" class="form-control"  [(ngModel)]="element.type" required>
+					<option *ngFor="let type of types" [ngValue]="type">{{type}}</option>
+				</select>
+			</div>
+
+			<button type="submit">Save</button>
+		</form>
+
+	</div>
+</div>

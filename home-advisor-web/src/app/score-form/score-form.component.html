@@ -8,10 +8,8 @@
 
 			<address-form [address]="element.address"></address-form>
 
-			<div class="form-group">
-				<label for="rate ">rating</label>
-				<input type="text" class="form-control" [(ngModel)]="element.rate" id="rate" name="rate" required />
-			</div>
+
+			<answer-form [question]="question" *ngFor="let question of element.answers" ></answer-form>
 
 			<input type="hidden" class="form-control" [(ngModel)]="element.rater"  id="rater" name="rater">
 

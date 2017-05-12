@@ -57,6 +57,15 @@ nav{
 			color: $primary-color;
 		}
 	}
+	.questions{
+		@extend .fa;
+    	@extend .fa-question;
+		font-size: 0px;
+		color: #cccccc;
+		&:before{
+			font-size: 30px;
+		}
+	}
 	.login{
 
 	}

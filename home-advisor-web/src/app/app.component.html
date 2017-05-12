@@ -3,6 +3,7 @@
 	<a routerLink="/search" routerLinkActive="active" class="search" >search</a>
 	<a routerLink="/scores" routerLinkActive="active" class="list" >list</a>
     <a routerLink="/score" routerLinkActive="active" class="add">add</a>
+     <a routerLink="/questions" routerLinkActive="active" class="questions">questions</a>
     <a *ngIf="connected" class="login">{{connected?.displayName}}</a>
     <a *ngIf="!connected" routerLink="/login" routerLinkActive="active" class="login">login</a>
 </nav>

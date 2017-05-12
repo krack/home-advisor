@@ -21,16 +21,21 @@ import {environment} from '../environments/environment';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { AddressViewComponent } from './address-view/address-view.component';
 import { AddressSearchComponent } from './address-search/address-search.component';
+import { QuestionViewComponent } from './question-view/question-view.component';
+import { QuestionFormComponent } from './question-form/question-form.component';
+import { QuestionsListComponent } from './questions-list/questions-list.component';
+import { AnswerViewComponent } from './answer-view/answer-view.component';
+import { AnswerFormComponent } from './answer-form/answer-form.component';
 
 
 const appRoutes: Routes = [
   { path: 'score',      component: ScoreFormComponent },
   { path: 'score-detail/:id',      component: ScoreViewComponent }, 
   { path: 'score/:id',      component: ScoreFormComponent },
-  {
-    path: 'scores',
-    component: ScoresListComponent
-  },
+  { path: 'scores',  component: ScoresListComponent},
+  { path: 'question',      component: QuestionFormComponent },
+  { path: 'question/:id',      component: QuestionFormComponent },
+  { path: 'questions',  component: QuestionsListComponent},
   {
     path: 'search',
     component: AddressSearchComponent
@@ -58,7 +63,12 @@ const appRoutes: Routes = [
     AddressFormComponent,
     AddressViewComponent,
     AddressSearchComponent,
-    ScoreViewComponent
+    ScoreViewComponent,
+    QuestionViewComponent,
+    QuestionFormComponent,
+    QuestionsListComponent,
+    AnswerViewComponent,
+    AnswerFormComponent
   ],
   imports: [
     BrowserModule,

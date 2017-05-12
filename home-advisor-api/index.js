@@ -143,11 +143,27 @@ var serviceScore = null;
 					"type": "String"
 				}
 			]
-		},
-		{
-
-			"name": "rate",
-			"type": "Number"
+		},{
+			"name": "answers",
+			"type": "List",
+			"shema": [
+				{
+					"name": "_id",
+					"type": "String"
+				},
+				{
+					"name": "label",
+					"type": "String"
+				},
+				{
+					"name": "value",
+					"type": "String"
+				},
+				{
+					"name": "order",
+					"type": "Number"
+				}
+			]
 		},
 		{
 			"name": "rater",
@@ -156,6 +172,36 @@ var serviceScore = null;
 	]
 
 	serviceScore = configureAPI(config, model, app, null, authentification.securityFunction);
+}
+
+
+
+var serviceQuestions = null;
+{//config bets
+	var config = {
+		"baseApi" : "/api/questions/",
+		"serverHost": serverHost,
+		"port": portPublic,
+		"shema": 'questions'
+
+	}
+	var model = [
+		{
+
+			"name": "label",
+			"type": "String"
+		},
+		{
+			"name": "type",
+			"type": "String"
+		},
+		{
+			"name": "order",
+			"type": "Number"
+		}
+	]
+
+	serviceQuestions = configureAPI(config, model, app, null, authentification.securityFunction);
 }
 
 

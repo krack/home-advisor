@@ -7,9 +7,6 @@ import { User } from '../model/user';
 import { ScoresService } from '../scores.service';
 import { UserService } from '../users.service';
 
-import {environment} from '../../environments/environment';
-
-const URL =  environment.apiUrl+'bets/';
 
 @Component({
   selector: 'scores-list-element',

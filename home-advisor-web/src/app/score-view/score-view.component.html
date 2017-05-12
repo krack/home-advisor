@@ -1,8 +1,16 @@
 <div>
-	<address-view [address]="element.address"></address-view>
-	<span>rate : {{element.rate}}</span>
+	<fieldset>
+		<legend>Address</legend>
+		<address-view [address]="element.address"></address-view>
+	</fieldset>
 	<span>rater : {{connectedUser?.displayName}}</span>
 </div>
+
+<fieldset>
+	<legend>answer</legend>
+	<answer-view [question]="question" *ngFor="let question of element.answers"></answer-view>
+</fieldset>
+
 
 <fieldset>
 	<legend>same address</legend>

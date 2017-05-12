@@ -1,0 +1,7 @@
+
+
+<a routerLink="/question" routerLinkActive="active" class="add">add a question</a>
+
+<question-view [element]="question" *ngFor="let question of elements" [elements]="elements"></question-view>
+
+<div *ngIf="elements?.length===0">no questions</div>

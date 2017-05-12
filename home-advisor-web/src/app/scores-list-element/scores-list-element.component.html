@@ -1,5 +1,10 @@
 <div>
-	<address-view [address]="element.address"></address-view>
-	<span class="rate">rate : {{element.rate}}</span>
+
+	<button class="delete" (click)="deleteElement($event)" i18n="delete button" >delete</button>
+	<a class="update" [routerLink]="['/score/',element._id]"  i18n="update button">update</a>
 	<span class="rater">rater : {{rater.displayName}}</span>
+
+	<address-view [address]="element.address"></address-view>
+	
+	<answer-view [question]="question" *ngFor="let question of element.answers"></answer-view>
 </div>
