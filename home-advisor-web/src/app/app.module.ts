@@ -15,6 +15,8 @@ import { ScoreViewComponent } from './score-view/score-view.component';
 import { ScoreListElementComponent } from './scores-list-element/scores-list-element.component';
 import { LoginComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
 import { FilesUploaderComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
+import { UsersListComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
+import { UsersListElementComponent, AppSettings } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
 
 
 import {environment} from '../environments/environment';
@@ -26,6 +28,7 @@ import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component';
 import { AnswerViewComponent } from './answer-view/answer-view.component';
 import { AnswerFormComponent } from './answer-form/answer-form.component';
+import { IfAdministratorDirective } from './if-administrator.directive';
 
 
 const appRoutes: Routes = [
@@ -36,6 +39,7 @@ const appRoutes: Routes = [
   { path: 'question',      component: QuestionFormComponent },
   { path: 'question/:id',      component: QuestionFormComponent },
   { path: 'questions',  component: QuestionsListComponent},
+  { path: 'users',  component: UsersListComponent},
   {
     path: 'search',
     component: AddressSearchComponent
@@ -68,7 +72,10 @@ const appRoutes: Routes = [
     QuestionFormComponent,
     QuestionsListComponent,
     AnswerViewComponent,
-    AnswerFormComponent
+    AnswerFormComponent,
+    IfAdministratorDirective,
+    UsersListComponent,
+    UsersListElementComponent
   ],
   imports: [
     BrowserModule,
@@ -83,4 +90,9 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor() {
+    AppSettings.API_ENDPOINT = environment.apiUrl;
+  }
+}

@@ -6,10 +6,15 @@
 		<form (ngSubmit)="saveElement()">
 			<input type="hidden" class="form-control" [(ngModel)]="element._id" id="_id" name="_id">
 
-			<address-form [address]="element.address"></address-form>
+			<fieldset class="address">
+				<legend>Address</legend>
+				<address-form [address]="element.address"></address-form>
+			</fieldset>
 
-
-			<answer-form [question]="question" *ngFor="let question of element.answers" ></answer-form>
+			<fieldset class="questions">
+				<legend>questions</legend>
+				<answer-form [question]="question" *ngFor="let question of element.answers" ></answer-form>
+			</fieldset>
 
 			<input type="hidden" class="form-control" [(ngModel)]="element.rater"  id="rater" name="rater">
 

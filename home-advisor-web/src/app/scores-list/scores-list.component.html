@@ -1,3 +1,5 @@
-<scores-list-element [element]="score" *ngFor="let score of elements" [elements]="elements"></scores-list-element>
+<div IfAdministrator>
+	<scores-list-element [element]="score" *ngFor="let score of elements" [elements]="elements"></scores-list-element>
 
-<div *ngIf="elements?.length===0">aucun score</div>
+	<div *ngIf="elements?.length===0">aucun score</div>
+</div>

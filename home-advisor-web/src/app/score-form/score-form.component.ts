@@ -2,17 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
-import { ElementComponent } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
+import { ElementComponent, User, UsersService } from 'angularjs-nodejs-framework/angularjs-nodejs-framework';
 
 import { FileUploader, FileSelectDirective} from 'ng2-file-upload'
 
 
 import { Score } from '../model/score';
 import { Question } from '../model/question';
-import { User } from '../model/user';
 
 import { ScoresService } from '../scores.service';
-import { UserService } from '../users.service';
 import { QuestionsService } from '../questions.service';
 
 import {environment} from '../../environments/environment';
@@ -23,16 +21,16 @@ import {environment} from '../../environments/environment';
 	selector: 'score-form',
 	templateUrl: './score-form.component.html',
 	styleUrls: ['./score-form.component.scss'],
-	providers: [ScoresService, UserService, QuestionsService]
+	providers: [ScoresService, UsersService, QuestionsService]
 
 })
 export class ScoreFormComponent extends ElementComponent<Score> implements OnInit {
-	private usersService:UserService;
+	private usersService:UsersService;
 	private connectedUser:User;
 	private questions:Question[];
 
 
-	constructor( router: Router, route: ActivatedRoute, scoresService: ScoresService, usersService: UserService, private questionsService: QuestionsService) {
+	constructor( router: Router, route: ActivatedRoute, scoresService: ScoresService, usersService: UsersService, private questionsService: QuestionsService) {
 		super("/score/", scoresService, router, route);
 		this.usersService= usersService;
 		this.element = new Score(undefined);

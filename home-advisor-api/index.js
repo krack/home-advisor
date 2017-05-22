@@ -105,12 +105,18 @@ var authentification = auth(authentificationConfiguration, app);
 
 
 var serviceScore = null;
-{//config bets
+{//config scores
 	var config = {
 		"baseApi" : "/api/scores/",
 		"serverHost": serverHost,
 		"port": portPublic,
-		"shema": 'scores'
+		"shema": 'scores',
+		"api" : {
+			"post": "m",
+			"delete": "o",
+			"put": "a",
+			"get": "m",
+		}
 
 	}
 	var model = [
@@ -171,18 +177,24 @@ var serviceScore = null;
 		}
 	]
 
-	serviceScore = configureAPI(config, model, app, null, authentification.securityFunction);
+	serviceScore = configureAPI(config, model, app, authentification.checkConnectedFunction, null);
 }
 
 
 
 var serviceQuestions = null;
-{//config bets
+{//config questions
 	var config = {
 		"baseApi" : "/api/questions/",
 		"serverHost": serverHost,
 		"port": portPublic,
-		"shema": 'questions'
+		"shema": 'questions', 
+		"api" : {
+			"post": "a",
+			"put": "a",
+			"delete": "a",
+			"get": "m",
+		}
 
 	}
 	var model = [
@@ -201,12 +213,12 @@ var serviceQuestions = null;
 		}
 	]
 
-	serviceQuestions = configureAPI(config, model, app, null, authentification.securityFunction);
+	serviceQuestions = configureAPI(config, model, app, authentification.checkConnectedFunction, null);
 }
 
 
 
-//POST /:id/name/
+//POST /api/search/
 app.post('/api/search/', function(req, res) {
 	console.log('POST /api/search/');
 	

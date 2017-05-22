@@ -1,32 +1,40 @@
 <div>
-	<fieldset>
+	
+	<fieldset class="rater">
+		<legend>rater</legend>
+		{{connectedUser?.displayName}}
+	</fieldset>
+
+	<fieldset class="other-score">
+		<legend>same address</legend>
+		<div class="address"  *ngFor="let score of searchResult.match" >
+			<div *ngIf="element._id !==score.scoreId">
+				<address-view [address]="score.address"></address-view>	
+				<button [routerLink]="['/score-detail', score.scoreId]">view</button>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="other-address">
+		<legend>same street</legend>
+		<div class="address" *ngFor="let score of searchResult.route">
+			<address-view [address]="score.address"></address-view>	
+
+
+			<button [routerLink]="['/score-detail', score.scoreId]">view</button>
+		</div>
+	</fieldset>
+
+	<fieldset class="address">
 		<legend>Address</legend>
 		<address-view [address]="element.address"></address-view>
 	</fieldset>
-	<span>rater : {{connectedUser?.displayName}}</span>
+
+
+
+	<fieldset class="answers">
+		<legend>answers</legend>
+		<answer-view [question]="question" *ngFor="let question of element.answers"></answer-view>
+	</fieldset>
+
 </div>
-
-<fieldset>
-	<legend>answer</legend>
-	<answer-view [question]="question" *ngFor="let question of element.answers"></answer-view>
-</fieldset>
-
-
-<fieldset>
-	<legend>same address</legend>
-	<div class="address"  *ngFor="let score of searchResult.match" >
-		<div *ngIf="element._id !==score.scoreId">
-			<address-view [address]="score.address"></address-view>	
-			<button [routerLink]="['/score-detail', score.scoreId]">view</button>
-		</div>
-	</div>
-</fieldset>
-<fieldset>
-	<legend>same street</legend>
-	<div class="address" *ngFor="let score of searchResult.route">
-		<address-view [address]="score.address"></address-view>	
-
-
-		<button [routerLink]="['/score-detail', score.scoreId]">view</button>
-	</div>
-</fieldset>
