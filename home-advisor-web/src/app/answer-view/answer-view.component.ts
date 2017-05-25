@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Question } from '../model/question';
+import { Proposal } from '../model/proposal';
 
 @Component({
   selector: 'answer-view',
@@ -12,5 +13,6 @@ export class AnswerViewComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

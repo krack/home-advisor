@@ -18,14 +18,21 @@
 				</select>
 			</div>
 
-			<div class="form-group" *ngIf="element.questionType==='choice'||element.questionType==='multi-choice'">
+			<div class="form-group proposals" *ngIf="element.questionType==='choice'||element.questionType==='multi-choice'">
 				<label for="proposals ">proposals</label>				
-				
-					<div *ngFor="let proposal of element.proposals">
-						{{proposal.label}}
-						<button type="button" (click)="removeProposal(proposal)">-</button>
-					</div>
-					<input type="text" [(ngModel)]="newProposal.label" id="label" name="label"  /><button type="button" (click)="addProposal()">add</button>
+				<ul>	
+					<template ngFor let-proposal [ngForOf]="element.proposals">
+						<li>
+							{{proposal.label}}
+							<button class="delete" type="button" (click)="removeProposal(proposal)">remove</button>
+						</li>
+					</template>
+				</ul>
+
+				<div class="new-proposal">
+					<input type="text" [(ngModel)]="newProposal.label" id="label" name="label"  />
+					<button type="button" (click)="addProposal()" class="add">add</button>
+				</div>
 			
 			</div>
 
