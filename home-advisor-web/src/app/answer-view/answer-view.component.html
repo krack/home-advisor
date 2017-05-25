@@ -1,4 +1,13 @@
 <div>
 	<span >{{question?.label}}</span>
-	<span >{{question?.value}}</span>
+
+	<span *ngIf="question.questionType==='score'">{{question?.value}}</span>
+	<span *ngIf="question.questionType==='choice'">{{question?.value}}</span>
+
+
+	<div *ngIf="question.questionType==='multi-choice'">	
+		<div *ngFor="let proposal of question.proposals">
+		  <span *ngIf='proposal.isChoice'>{{proposal.label}}</span>
+		</div>
+	</div>
 </div>

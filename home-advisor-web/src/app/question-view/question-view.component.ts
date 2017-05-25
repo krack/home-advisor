@@ -14,8 +14,8 @@ import { QuestionsService } from '../questions.service';
 })
 export class QuestionViewComponent extends ElementComponent<Question> implements OnInit{
 
-  @Input() element: Score;
-  @Input()  elements: Score[];
+  @Input() element: Question;
+  @Input()  elements: Question[];
 
   constructor(service: QuestionsService, router:Router, route: ActivatedRoute) { 
     super("/questions/", service, router, route);

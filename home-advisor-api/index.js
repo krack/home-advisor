@@ -162,14 +162,33 @@ var serviceScore = null;
 					"type": "String"
 				},
 				{
+					"name": "questionType",
+					"type": "String"
+				},
+				{
 					"name": "value",
 					"type": "String"
 				},
 				{
 					"name": "order",
 					"type": "Number"
+				},
+				{
+					"name": "proposals",
+					"type": "List",
+					"shema": [
+						{
+							"name": "label",
+							"type": "String"
+						},
+						{
+							"name": "isChoice",
+							"type": "Boolean"
+						}
+					]
 				}
 			]
+
 		},
 		{
 			"name": "rater",
@@ -204,12 +223,22 @@ var serviceQuestions = null;
 			"type": "String"
 		},
 		{
-			"name": "type",
+			"name": "questionType",
 			"type": "String"
 		},
 		{
 			"name": "order",
 			"type": "Number"
+		},
+		{
+			"name": "proposals",
+			"type": "List",
+			"shema": [
+				{
+					"name": "label",
+					"type": "String"
+				}
+			]
 		}
 	]
 

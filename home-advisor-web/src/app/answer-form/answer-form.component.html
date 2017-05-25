@@ -1,10 +1,33 @@
 <div>
 	<label for="value">{{question?.label}}</label>
-	<select [(ngModel)]="question.value" id="value" name="value" required>
+
+	<select *ngIf="question.questionType=='score'" [(ngModel)]="question.value" id="value" name="value" required>
 		<option ngValue="1">1</option>
 		<option ngValue="2">2</option>
 		<option ngValue="3">3</option>
 		<option ngValue="4">4</option>
 		<option ngValue="5">5</option>
 	</select>
+
+	<div *ngIf="question.questionType=='choice'">	
+		<div *ngFor="let proposal of question.proposals">
+		  <input 
+		   type='radio'
+		   [id]='question._id+"-"+question.questionType+"-"+proposal.label'
+		   [value]='proposal.label'
+		   [(ngModel)]='question.value'
+		   [name]='question._id+"-choice"'
+		  />
+		  <label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
+		</div>
+	</div>
+
+
+	<div *ngIf="question.questionType=='multi-choice'">	
+		<div *ngFor="let proposal of question.proposals">
+		  <input type='checkbox' [id]='question._id+"-"+question.questionType+"-"+proposal.label' [(ngModel)]="proposal.isChoice" />
+		  <label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
+		</div>
+	</div>
+	
 </div>

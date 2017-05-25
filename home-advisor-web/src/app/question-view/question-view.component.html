@@ -2,5 +2,5 @@
 	<button class="delete" (click)="deleteElement($event)" i18n="delete button" >delete</button>
 	<a class="update" [routerLink]="['/question/',element._id]"  i18n="update button">update</a>
 	<span class="label">label : {{element.label}}</span>
-	<span class="type">type : {{element.type}}</span>
+	<span class="type">type : {{element.questionType}}</span>
 </div>

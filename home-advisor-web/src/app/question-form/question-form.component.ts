@@ -8,6 +8,7 @@ import { FileUploader, FileSelectDirective} from 'ng2-file-upload'
 
 
 import { Question } from '../model/question';
+import { Proposal } from '../model/proposal';
 
 import { QuestionsService } from '../questions.service';
 
@@ -20,17 +21,31 @@ import {environment} from '../../environments/environment';
   providers:[QuestionsService]
 })
 export class QuestionFormComponent extends ElementComponent<Question>  implements OnInit {
+	public newProposal:Proposal;
 	 types = [
-	 	"score"
+	 	"score",
+	 	"choice",
+	 	"multi-choice"
      ];
 
 	constructor( router: Router, route: ActivatedRoute, scoresService: QuestionsService) {
 		super("/question/", scoresService, router, route);
 		this.element = new Question(undefined);
+		this.newProposal = new Proposal();
 	}
 
 	ngOnInit() {
 		this.initElementFromUrlParameter().subscribe(() => {
 		});
+	}
+	addProposal(){
+		this.element.proposals.push(this.newProposal);
+		this.newProposal = new Proposal();
+	}
+	removeProposal(value:string){
+		let index: number = this.element.proposals.indexOf(value);
+	    if (index !== -1) {
+	        this.element.proposals.splice(index, 1);
+	    }    
 	}
 }
