@@ -9,25 +9,20 @@
 		<option ngValue="5">5</option>
 	</select>
 
-	<div *ngIf="question.questionType=='choice'">	
+	<div *ngIf="question.questionType=='choice'">
 		<div *ngFor="let proposal of question.proposals">
-		  <input 
-		   type='radio'
-		   [id]='question._id+"-"+question.questionType+"-"+proposal.label'
-		   [value]='proposal.label'
-		   [(ngModel)]='question.value'
-		   [name]='question._id+"-choice"'
-		  />
-		  <label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
+			<input type='radio' [id]='question._id+"-"+question.questionType+"-"+proposal.label' [value]='proposal._id' [(ngModel)]='question.value'
+			 [name]='question._id+"-choice"' />
+			<label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
 		</div>
 	</div>
 
 
-	<div *ngIf="question.questionType=='multi-choice'">	
+	<div *ngIf="question.questionType=='multi-choice'">
 		<div *ngFor="let proposal of question.proposals">
-		  <input type='checkbox' [id]='question._id+"-"+question.questionType+"-"+proposal.label' [(ngModel)]="proposal.isChoice" />
-		  <label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
+			<input type='checkbox' [id]='question._id+"-"+question.questionType+"-"+proposal.label' [(ngModel)]="proposal.isChoice" />
+			<label [for]='question._id+"-"+question.questionType+"-"+proposal.label'>{{proposal.label}}</label>
 		</div>
 	</div>
-	
+
 </div>

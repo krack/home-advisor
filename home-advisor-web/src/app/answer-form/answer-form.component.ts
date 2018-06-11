@@ -7,10 +7,11 @@ import { Question } from '../model/question';
   styleUrls: ['./answer-form.component.scss']
 })
 export class AnswerFormComponent implements OnInit {
-	@Input() question: Question; 
+  @Input() question: Question;
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

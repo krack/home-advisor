@@ -1,5 +1,5 @@
-export class Proposal{
 
-	constructor(public label?:string, public isChoice?:Boolean){
-	}
+export class Proposal {
+    constructor(public _id?: string, public label?: string, public isChoice?: Boolean) {
+    }
 }

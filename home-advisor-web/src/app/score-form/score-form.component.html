@@ -1,24 +1,23 @@
-<div >
+<div>
 	<h1 *ngIf="!element._id">Add a rating</h1>
 	<h1 *ngIf="element._id">Update a rating</h1>
 
 	<div class="body">
-		<form (ngSubmit)="saveElement()">
+		<form (ngSubmit)="next()">
 			<input type="hidden" class="form-control" [(ngModel)]="element._id" id="_id" name="_id">
 
-			<fieldset class="address">
+			<fieldset class="address" *ngIf="!currentQuestion">
 				<legend>Address</legend>
 				<address-form [address]="element.address"></address-form>
 			</fieldset>
 
-			<fieldset class="questions">
+			<fieldset class="questions" *ngIf="currentQuestion">
 				<legend>questions</legend>
-				<answer-form [question]="question" *ngFor="let question of element.answers" ></answer-form>
+				<answer-form [question]="currentQuestion"></answer-form>
 			</fieldset>
 
-			<input type="hidden" class="form-control" [(ngModel)]="element.rater"  id="rater" name="rater">
-
-			<button type="submit">Save</button>
+			<input type="hidden" class="form-control" [(ngModel)]="element.rater" id="rater" name="rater">
+			<button type="submit">Next</button>
 		</form>
 
 	</div>

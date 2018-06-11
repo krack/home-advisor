@@ -12,15 +12,15 @@
 			</div>
 
 			<div class="form-group">
-				<label for="questionType ">type</label>				
-				<select id="questionType" name="questionType" class="form-control"  [(ngModel)]="element.questionType" required>
-					<option *ngFor="let type of types" [ngValue]="type">{{type}}</option>
+				<label for="questionType ">type</label>
+				<select id="questionType" name="questionType" class="form-control" [(ngModel)]="element.questionType" required>
+					<option *ngFor="let type of types" [value]="type.name">{{type.name}}</option>
 				</select>
 			</div>
 
 			<div class="form-group proposals" *ngIf="element.questionType==='choice'||element.questionType==='multi-choice'">
-				<label for="proposals ">proposals</label>				
-				<ul>	
+				<label for="proposals ">proposals</label>
+				<ul>
 					<template ngFor let-proposal [ngForOf]="element.proposals">
 						<li>
 							{{proposal.label}}
@@ -30,10 +30,25 @@
 				</ul>
 
 				<div class="new-proposal">
-					<input type="text" [(ngModel)]="newProposal.label" id="label" name="label"  />
+					<input type="text" [(ngModel)]="newProposal.label" id="label" name="label" />
 					<button type="button" (click)="addProposal()" class="add">add</button>
 				</div>
-			
+
+			</div>
+
+
+			<div class="form-group">
+				<label for="questionDepends ">Depend of question</label>
+				<select id="questionDepends" name="questionDepends" class="form-control" (change)="chooseQuestion($event.target.value)" [(ngModel)]="element.questionDepends">
+					<option *ngFor="let question of questions" [value]="question._id">{{question.label}}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="answerDepends ">Depend of answer</label>
+				<select id="answerDepends" name="answerDepends" class="form-control" [(ngModel)]="element.answerDepends">
+					<option *ngFor="let proposal of selectedQuestion?.proposals" [value]="proposal._id">{{proposal.label}}</option>
+				</select>
 			</div>
 
 			<button type="submit">Save</button>

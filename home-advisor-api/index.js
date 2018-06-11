@@ -1,4 +1,4 @@
-var express  = require('express');
+var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -32,38 +32,38 @@ var port = process.env.SERVER_PORT || 8080;
 var portPublic = process.env.SERVER_PUBLIC_PORT || 8080;
 
 
-var facebook_api_key= process.env.FACEBOOK_API_KEY;
-var facebook_api_secret= process.env.FACEBOOK_API_SECRET;
-var callback_url= serverHost+":"+portPublic+"/auth/facebook/callback";
+var facebook_api_key = process.env.FACEBOOK_API_KEY;
+var facebook_api_secret = process.env.FACEBOOK_API_SECRET;
+var callback_url = serverHost + ":" + portPublic + "/auth/facebook/callback";
 //end config
 /***********/
 
 
 var database = {
-	url : 'mongodb://mongo:27017'
+	url: 'mongodb://mongo:27017'
 }
 // To be redesigned with a loop and a break on total timeout or number of tries
-mongoose.connect(database.url, function(err) {
-	if(err) {
+mongoose.connect(database.url, function (err) {
+	if (err) {
 		console.log('connection error (first try)', err);
-		setTimeout(function() {
-			mongoose.connect(database.url, function(err) {
-				if(err) {
+		setTimeout(function () {
+			mongoose.connect(database.url, function (err) {
+				if (err) {
 					console.log('connection error (second try)', err);
-					setTimeout(function() {
-						mongoose.connect(database.url, function(err) {
-							if(err) {
+					setTimeout(function () {
+						mongoose.connect(database.url, function (err) {
+							if (err) {
 								console.log('connection error (three strikes... you are out)', err);
 							} else {
 								console.log('successful connection (third try... almost out)');
 							}
 						});
-					},5000);
+					}, 5000);
 				} else {
 					console.log('successful connection (second try)');
 				}
 			});
-		},1000);
+		}, 1000);
 	} else {
 		console.log('successful connection (first try)');
 	}
@@ -75,43 +75,43 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // Add headers
 app.use(function (req, res, next) {
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', allowUrl);
+	// Website you wish to allow to connect
+	res.setHeader('Access-Control-Allow-Origin', allowUrl);
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	// Request methods you wish to allow
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	// Request headers you wish to allow
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+	// Set to true if you need the website to include cookies in the requests sent
+	// to the API (e.g. in case you use sessions)
+	res.setHeader('Access-Control-Allow-Credentials', true);
 
-    // Pass to next layer of middleware
-    next();
+	// Pass to next layer of middleware
+	next();
 });
 
-var authentificationConfiguration ={
+var authentificationConfiguration = {
 	"redirectUrl": allowUrl,
-	"facebook":{
-		"api_key" :facebook_api_key,
+	"facebook": {
+		"api_key": facebook_api_key,
 		"api_secret": facebook_api_secret,
-		"callback_url":callback_url
+		"callback_url": callback_url
 	}
 }
 
-var authentification = auth(authentificationConfiguration, app); 
+var authentification = auth(authentificationConfiguration, app);
 
 
 var serviceScore = null;
 {//config scores
 	var config = {
-		"baseApi" : "/api/scores/",
+		"baseApi": "/api/scores/",
 		"serverHost": serverHost,
 		"port": portPublic,
 		"shema": 'scores',
-		"api" : {
+		"api": {
 			"post": "m",
 			"delete": "o",
 			"put": "a",
@@ -149,7 +149,7 @@ var serviceScore = null;
 					"type": "String"
 				}
 			]
-		},{
+		}, {
 			"name": "answers",
 			"type": "List",
 			"shema": [
@@ -178,6 +178,10 @@ var serviceScore = null;
 					"type": "List",
 					"shema": [
 						{
+							"name": "id",
+							"type": "String"
+						},
+						{
 							"name": "label",
 							"type": "String"
 						},
@@ -204,11 +208,11 @@ var serviceScore = null;
 var serviceQuestions = null;
 {//config questions
 	var config = {
-		"baseApi" : "/api/questions/",
+		"baseApi": "/api/questions/",
 		"serverHost": serverHost,
 		"port": portPublic,
-		"shema": 'questions', 
-		"api" : {
+		"shema": 'questions',
+		"api": {
 			"post": "a",
 			"put": "a",
 			"delete": "a",
@@ -239,6 +243,14 @@ var serviceQuestions = null;
 					"type": "String"
 				}
 			]
+		},
+		{
+			"name": "questionDepends",
+			"type": "String"
+		},
+		{
+			"name": "answerDepends",
+			"type": "String"
 		}
 	]
 
@@ -248,52 +260,52 @@ var serviceQuestions = null;
 
 
 //POST /api/search/
-app.post('/api/search/', function(req, res) {
+app.post('/api/search/', function (req, res) {
 	console.log('POST /api/search/');
-	
-	var criteriaAddress ={
-		"address.street_number" : req.body.street_number,
-		"address.route" : req.body.route,
-		"address.locality" : req.body.locality,
-		"address.country" : req.body.country,
-		"address.postal_code" : req.body.postal_code
+
+	var criteriaAddress = {
+		"address.street_number": req.body.street_number,
+		"address.route": req.body.route,
+		"address.locality": req.body.locality,
+		"address.country": req.body.country,
+		"address.postal_code": req.body.postal_code
 	};
 
-	var criteriaRoute ={
-		"address.street_number" : { $ne: req.body.street_number},
-		"address.route" : req.body.route,
-		"address.locality" : req.body.locality,
-		"address.country" : req.body.country,
-		"address.postal_code" : req.body.postal_code
+	var criteriaRoute = {
+		"address.street_number": { $ne: req.body.street_number },
+		"address.route": req.body.route,
+		"address.locality": req.body.locality,
+		"address.country": req.body.country,
+		"address.postal_code": req.body.postal_code
 	};
 
 	var result = {
 		"match": [],
 		"route": []
 	};
-	function addElements(table, list){
-		for(var i = 0; i < list.length; i++){
+	function addElements(table, list) {
+		for (var i = 0; i < list.length; i++) {
 			var element = list[i];
 			table.push({
 				"address": list[i].address,
 				"scoreId": list[i]._id
-			}); 
+			});
 		}
 	}
 
-	serviceScore.find(criteriaAddress).then(function(list){
-			addElements(result.match, list);
-			serviceScore.find(criteriaRoute).then(function(list){
-					addElements(result.route, list);
-					
-					res.json(result);
-				}, 
-				function(error){
-					res.sendStatus(error);
-				}
-			);
-		}, 
-		function(error){
+	serviceScore.find(criteriaAddress).then(function (list) {
+		addElements(result.match, list);
+		serviceScore.find(criteriaRoute).then(function (list) {
+			addElements(result.route, list);
+
+			res.json(result);
+		},
+			function (error) {
+				res.sendStatus(error);
+			}
+		);
+	},
+		function (error) {
 			res.sendStatus(error);
 		}
 	);

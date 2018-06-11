@@ -1,15 +1,15 @@
 <div [class]="question.questionType">
-	<label >{{question?.label}}</label>
+	<label>{{question?.label}}</label>
 
 	<span *ngIf="question.questionType==='score'">{{question?.value}}</span>
-	<span *ngIf="question.questionType==='choice'">{{question?.value}}</span>
+	<span *ngIf="question.questionType==='choice'">{{proposal?.label}}</span>
 
 
-	<ul *ngIf="question.questionType==='multi-choice'">	
+	<ul *ngIf="question.questionType==='multi-choice'">
 		<template ngFor let-proposal [ngForOf]="question.proposals">
-		    <li *ngIf='proposal.isChoice'>
-		    	{{proposal.label}}
-		    </li>
- 	 	</template>
+			<li *ngIf='proposal.isChoice'>
+				{{proposal.label}}
+			</li>
+		</template>
 	</ul>
 </div>
