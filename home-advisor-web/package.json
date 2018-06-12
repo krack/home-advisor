@@ -30,6 +30,7 @@
     "angularjs-nodejs-framework": "git://github.com/krack/angularjs-nodejs-framework.git",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "lodash-es": "^4.17.10",
     "ng2-file-upload": "^1.2.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.7.6"
